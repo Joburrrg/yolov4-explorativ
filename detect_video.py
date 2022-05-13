@@ -29,7 +29,7 @@ flags.DEFINE_string('output', None, 'path to output video')
 flags.DEFINE_string('output_format', 'XVID', 'codec used in VideoWriter when saving video to file')
 flags.DEFINE_float('iou', 0.45, 'iou threshold')
 flags.DEFINE_float('score', 0.50, 'score threshold')
-flags.DEFINE_boolean('count', True, 'count objects within video')
+flags.DEFINE_boolean('count', False, 'count objects within video')
 flags.DEFINE_boolean('dont_show', False, 'dont show video output')
 flags.DEFINE_boolean('info', False, 'print info on detections')
 flags.DEFINE_boolean('crop', False, 'crop detections from images')
@@ -156,7 +156,18 @@ def main(_argv):
             for key, value in counted_classes.items():
                 print("Number of {}s: {}".format(key, value))
             image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, counted_classes, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
-       
+        else:
+            image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
+        
+        fps = 1.0 / (time.time() - start_time)
+        print("FPS: %.2f" % fps)
+        result = np.asarray(image)
+        result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        
+        
+        if FLAGS.output:
+            out.write(result)
+        if cv2.waitKey(1) & 0xFF == ord('q'): break
 
 if __name__ == '__main__':
     try:

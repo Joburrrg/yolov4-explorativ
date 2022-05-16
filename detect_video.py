@@ -129,7 +129,7 @@ def main(_argv):
         allowed_classes = list(class_names.values())
         
         # custom allowed classes (uncomment line below to allow detections for only people)
-        #allowed_classes = ['person']
+        allowed_classes = ['apple']
 
         # if crop flag is enabled, crop each detection and save it as new image
         if FLAGS.crop:

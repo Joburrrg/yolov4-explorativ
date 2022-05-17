@@ -80,7 +80,7 @@ def main(_argv):
             frame_num += 1
             image = Image.fromarray(frame)
         else:
-            print('Video has ended or failed, try a different video format!')
+            print('Your Mp4 Video has ended!')
             break
     
         frame_size = frame.shape[:2]

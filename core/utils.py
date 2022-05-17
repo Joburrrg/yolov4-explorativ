@@ -257,7 +257,7 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
                 c3 = (c1[0] + t_size[0], c1[1] - t_size[1] - 3)
                 cv2.rectangle(image, c1, (np.float32(c3[0]), np.float32(c3[1])), bbox_color, -1) #filled
 
-                cv2.putText(image, bbox_mess, (c1[0], np.float32(c1[1] - 2)), cv2.FONT_HERSHEY_SIMPLEX,
+                cv2.putText(image, bbox_mess, (c1[0], np.float32(c1[1] - 2)), cv2.FONT_HERSHEY,
                         fontScale, (0, 0, 0), bbox_thick // 2, lineType=cv2.LINE_AA)
 
             if counted_classes != None:
@@ -265,7 +265,7 @@ def draw_bbox(image, bboxes, info = False, counted_classes = None, show_label=Tr
                 offset = 15
                 for key, value in counted_classes.items():
                     cv2.putText(image, "{}s detected: {}".format(key, value), (5, offset),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (255, 153, 0), 2)
+                            cv2.FONT_HERSHEY_COMPLEX, 2, (255, 153, 0), 2)
                     offset += height_ratio
     return image
 

@@ -160,22 +160,20 @@ def main(_argv):
             # loop through dict and print
             for key, value in counted_classes.items():
               if valuecount == None:
-                valuecount = {"count": value, "timestamp": time.time()}
+                valuecount = {"count": value}
               else:
-                if value < valuecount["count"] and time.time()-valuecount["timestamp"]>3:
-                  print ("Produkt wurde gekauft")
-
+                if value < valuecount["count"]:
+                  print ("Es wurden", valuecount["count"] - value,"Produkte entnommen")
+      
               print("Number of {}s: {}".format(key, value))
             image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, counted_classes, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
         else:
             image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
-        
-
+       
         fps = 1.0 / (time.time() - start_time)
         print("FPS: %.2f" % fps)
         result = np.asarray(image)
         result = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        
         
         if FLAGS.output:
             out.write(result)

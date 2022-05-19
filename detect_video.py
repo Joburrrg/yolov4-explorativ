@@ -145,9 +145,9 @@ def main(_argv):
                 pass
 
         if FLAGS.count:
-            # count objects found
+            # Zählung der Objekte
             counted_classes = count_objects(pred_bbox, by_class = True, allowed_classes=allowed_classes)
-            # loop through dict and print
+            # Schleife durch dict and print
             for key, value in counted_classes.items():
               if valuecount == None:
                 valuecount = {"count": value}

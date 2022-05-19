@@ -85,7 +85,7 @@ def main(_argv):
             frame_num += 1
             image = Image.fromarray(frame)
         else:
-            print('Your Mp4 Video has ended!')
+            print('Dein Video wurde unter results gespeichert!')
             break
     
         frame_size = frame.shape[:2]
@@ -98,6 +98,8 @@ def main(_argv):
         for key, value in pred_bbox.items():
           boxes = value[:, :, 0:4]
           pred_conf = value[:, :, 4:]
+            
+        # non max supression
 
         boxes, scores, classes, valid_detections = tf.image.combined_non_max_suppression(
             boxes=tf.reshape(boxes, (tf.shape(boxes)[0], -1, 1, 4)),

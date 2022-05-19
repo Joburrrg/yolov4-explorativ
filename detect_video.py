@@ -156,9 +156,9 @@ def main(_argv):
                   print ("Es wurden", valuecount["count"] - value,"Produkte entnommen")
       
               print("Number of {}s: {}".format(key, value))
-            image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, counted_classes, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
+            image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, counted_classes, allowed_classes=allowed_classes)
         else:
-            image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
+            image = utils.draw_bbox(frame, pred_bbox, FLAGS.info, allowed_classes=allowed_classes)
        
         fps = 1.0 / (time.time() - start_time)
         print("FPS: %.2f" % fps)
